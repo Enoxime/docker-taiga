@@ -1,0 +1,69 @@
+version: "3.7"
+
+services:
+  traefik:
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedByDefault=false"
+      - "--api.insecure=true"
+    depends_on:
+      - taiga-front
+    image: traefik:v2.0.4
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  taiga-back:
+    build:
+      context: ./build/taiga-back
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+    image: "taiga/taiga-back"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.taiga-back.rule=Host(`lvh.me`) && PathPrefix(`/api`, `/admin`, `/static`, `/media`)"
+
+  taiga-front:
+    build:
+      context: ./build/taiga-front
+      dockerfile: Dockerfile
+    depends_on:
+      - taiga-back
+      - taiga-events
+    image: "taiga/taiga-front"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.taiga-front.rule=Host(`lvh.me`)"
+
+  taiga-events:
+    build:
+      context: ./build/taiga-events
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    image: "taiga/taiga-events"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.taiga-events.rule=Host(`lvh.me`) && PathPrefix(`/events`)"
+
+  postgres:
+    image: "postgres:12.0-alpine"
+    environment:
+      POSTGRES_PASSWORD: "taiga"
+      POSTGRES_USER: "taiga"
+      POSTGRES_DB: "taigadb"
+
+  rabbitmq:
+    image:  "rabbitmq:3.8.0-alpine"
+    environment:
+      RABBITMQ_DEFAULT_USER: "taiga"
+      RABBITMQ_DEFAULT_PASS: "taiga"
+      RABBITMQ_DEFAULT_VHOST: "taiga"
+
+  redis:
+      image: "redis:5.0.6-alpine"
