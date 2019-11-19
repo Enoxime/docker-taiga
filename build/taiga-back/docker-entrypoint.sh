@@ -3,9 +3,11 @@
 __taiga_back_path="/opt/taiga-back"
 
 # Setting up configurtions
-mv "${__taiga_back_path}/settings/docker-local.py" "${__taiga_back_path}/settings/local.py"
 sed 's/guest:guest@localhost:5672\/\//taiga:taiga@rabbitmq:5672\/taiga/;
     s/localhost:6379/redis:6379/' -i "${__taiga_back_path}/settings/celery.py"
+
+# nginx settup
+rm /etc/nginx/sites-enabled/default
 
 # Add bjoern
 {
@@ -23,8 +25,6 @@ if [ ! -f "/etc/nginx/conf.d/taiga.conf" ]; then
     python manage.py compilemessages
     python manage.py collectstatic --noinput
 
-    # nginx settup
-    rm /etc/nginx/sites-enabled/default
     # mkdir -p /var/log/taiga
     cat << "__EOD__" > "/etc/nginx/conf.d/taiga.conf"
 server {

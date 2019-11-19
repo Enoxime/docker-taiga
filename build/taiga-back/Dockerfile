@@ -66,7 +66,7 @@ ENV DB_PASSWORD="taiga"
 COPY --from=builder /usr/local /usr/local
 COPY --from=builder /opt/taiga-back /opt/taiga-back
 COPY ./docker-entrypoint.sh /opt/taiga-back/entrypoint.sh
-COPY ./docker-local.py /opt/taiga-back/settings/docker-local.py
+COPY ./docker-local.py /opt/taiga-back/settings/local.py
 COPY ./docker.py /opt/taiga-back/settings/docker.py
 
 WORKDIR /opt/taiga-back
