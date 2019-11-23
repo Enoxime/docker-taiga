@@ -22,7 +22,7 @@ __EOD__
 
 cat << __EOD__ > "/usr/share/nginx/html/conf.json"
 {
-    "api": "http://${API_HOSTNAME}/api/v1/",
+    "api": "${API_HOSTNAME}/api/v1/",
     "eventsUrl": "",
     "eventsMaxMissedHeartbeats": 5,
     "eventsHeartbeatIntervalTime": 60000,

@@ -5,7 +5,7 @@ FROM base AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ARG TAIGA_BACK_VERSION=4.2.14
+ARG TAIGA_BACK_VERSION=5.0.0
 
 RUN apt update && apt install -y \
     gcc \

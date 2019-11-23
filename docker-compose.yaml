@@ -8,7 +8,7 @@ services:
       - "--api.insecure=true"
     depends_on:
       - taiga-front
-    image: traefik:v2.0.4
+    image: traefik:v2.1.0-rc2
     ports:
       - "80:80"
       - "8080:8080"
@@ -52,18 +52,18 @@ services:
       - "traefik.http.routers.taiga-events.rule=Host(`lvh.me`) && PathPrefix(`/events`)"
 
   postgres:
-    image: "postgres:12.0-alpine"
+    image: "postgres:12.1"
     environment:
       POSTGRES_PASSWORD: "taiga"
       POSTGRES_USER: "taiga"
       POSTGRES_DB: "taigadb"
 
   rabbitmq:
-    image:  "rabbitmq:3.8.0-alpine"
+    image:  "rabbitmq:3.8.2-rc.1"
     environment:
       RABBITMQ_DEFAULT_USER: "taiga"
       RABBITMQ_DEFAULT_PASS: "taiga"
       RABBITMQ_DEFAULT_VHOST: "taiga"
 
   redis:
-      image: "redis:5.0.6-alpine"
+      image: "redis:5.0.6"

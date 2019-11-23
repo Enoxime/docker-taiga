@@ -2,7 +2,7 @@ FROM nginx:1.17.5
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ARG TAIGA_FRONT_VERSION=4.2.14-stable
+ARG TAIGA_FRONT_VERSION=5.0.1
 
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
