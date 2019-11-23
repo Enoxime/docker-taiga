@@ -20,7 +20,7 @@ RUN apt update && apt install -y \
 
 WORKDIR /opt/taiga-back
 
-RUN git clone --depth=1 --branch "${TAIGA_BACK_VERSION}" https://github.com/taigaio/taiga-back.git /opt/taiga-back
+RUN git clone --single-branch --depth=1 --branch "${TAIGA_BACK_VERSION}" https://github.com/taigaio/taiga-back.git /opt/taiga-back
 
 RUN pip install -r requirements.txt && pip install bjoern
 

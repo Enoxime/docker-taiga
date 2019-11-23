@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/taiga-events
 
-RUN git clone --depth=1 https://github.com/taigaio/taiga-events.git /opt/taiga-events \
+RUN git clone --single-branch --depth=1 https://github.com/taigaio/taiga-events.git /opt/taiga-events \
     && npm install \
     && npm install -g coffee-script
 
