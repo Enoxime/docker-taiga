@@ -32,7 +32,7 @@ cat << __EOD__ > "/usr/share/nginx/html/conf.json"
     "defaultLanguage": "en",
     "themes": ["taiga"],
     "defaultTheme": "taiga",
-    "publicRegisterEnabled": true,
+    "publicRegisterEnabled": false,
     "feedbackEnabled": true,
     "supportUrl": "https://tree.taiga.io/support/",
     "privacyPolicyUrl": null,
