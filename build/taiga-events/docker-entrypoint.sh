@@ -10,4 +10,4 @@ cat << __EOD__ > "/opt/taiga-events/config.json"
 }
 __EOD__
 
-coffee index.coffee
+eval "${@}"

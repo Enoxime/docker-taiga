@@ -21,3 +21,5 @@ COPY ./docker-entrypoint.sh /opt/taiga-events/entrypoint.sh
 EXPOSE 8888
 
 ENTRYPOINT [ "/opt/taiga-events/entrypoint.sh" ]
+
+CMD [ "coffee", "index.coffee" ]
