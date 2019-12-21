@@ -74,4 +74,4 @@ __EOD__
 fi
 
 python "${__taiga_back_path}/app.wsgi" &
-nginx -g "daemon off;"
+eval "${@}"

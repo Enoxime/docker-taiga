@@ -74,3 +74,5 @@ WORKDIR /opt/taiga-back
 EXPOSE 80
 
 ENTRYPOINT [ "/opt/taiga-back/entrypoint.sh" ]
+
+CMD [ "nginx", "-g", "daemon off;" ]
