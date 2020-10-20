@@ -29,12 +29,12 @@ EVENTS_PUSH_BACKEND_OPTIONS = {"url": "amqp://taiga:taiga@rabbitmq:5672/taiga"}
 
 # Uncomment and populate with proper connection parameters
 # for enable email sending. EMAIL_HOST_USER should end by @domain.tld
-# EMAIL_BACKEND = is_env_exists("EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
-# EMAIL_USE_TLS = is_env_exists("EMAIL_USE_TLS", False)
-# EMAIL_HOST = is_env_exists("EMAIL_HOST", "localhost")
-# EMAIL_HOST_USER = is_env_exists("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = is_env_exists("EMAIL_HOST_PASSWORD")
-# EMAIL_PORT = is_env_exists("EMAIL_PORT", 25)
+EMAIL_BACKEND = is_env_exists("EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
+EMAIL_USE_TLS = is_env_exists("EMAIL_USE_TLS", False)
+EMAIL_HOST = is_env_exists("EMAIL_HOST", "localhost")
+EMAIL_HOST_USER = is_env_exists("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = is_env_exists("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = is_env_exists("EMAIL_PORT", 25)
 
 # Uncomment and populate with proper connection parameters
 # for enable github login/singin.
